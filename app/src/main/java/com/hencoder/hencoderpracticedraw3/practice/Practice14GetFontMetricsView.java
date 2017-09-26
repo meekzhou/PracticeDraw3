@@ -32,6 +32,7 @@ public class Practice14GetFontMetricsView extends View {
         paint1.setStrokeWidth(20);
         paint1.setColor(Color.parseColor("#E91E63"));
         paint2.setTextSize(160);
+
     }
 
     @Override
@@ -45,11 +46,16 @@ public class Practice14GetFontMetricsView extends View {
         // 这种居中算法的优点是，可以让不同的文字的 baseline 对齐
 
         int middle = (top + bottom) / 2;
-        canvas.drawText(texts[0], 100, middle, paint2);
-        canvas.drawText(texts[1], 200, middle, paint2);
-        canvas.drawText(texts[2], 300, middle, paint2);
-        canvas.drawText(texts[3], 400, middle, paint2);
-        canvas.drawText(texts[4], 500, middle, paint2);
-        canvas.drawText(texts[5], 600, middle, paint2);
+
+        Paint.FontMetrics fontMetrics = paint2.getFontMetrics();
+        float yOffset = -(fontMetrics.ascent + fontMetrics.descent) / 2;
+
+
+        canvas.drawText(texts[0], 100, middle + yOffset, paint2);
+        canvas.drawText(texts[1], 200, middle + yOffset, paint2);
+        canvas.drawText(texts[2], 300, middle + yOffset, paint2);
+        canvas.drawText(texts[3], 400, middle + yOffset, paint2);
+        canvas.drawText(texts[4], 500, middle + yOffset, paint2);
+        canvas.drawText(texts[5], 600, middle + yOffset, paint2);
     }
 }
